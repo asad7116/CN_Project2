@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./db
+    container_name: web_container
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app/templates
+      - type: volume
+        source: dbdata
+        target: /app/data
+    depends_on:
+      - db
+
+  db:
+    image: busybox
+    container_name: db_container
+    volumes:
+      - type: volume
+        source: dbdata
+        target: /data
+    command: ['sh', '-c', 'while true; do sleep 3600; done']
+
+volumes:
+  dbdata:
