@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 # Specify the folder for templates. Because docker-compose mounts ./app to /app/templates,
 # Flask will find your HTML files there.
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='../app')
 app.secret_key = 'your_secret_key'  # Change for production
 
 # Database file is stored in /app/data folder (shared volume)
